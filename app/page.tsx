@@ -8,6 +8,7 @@ import { FinalCta } from "@/components/FinalCta";
 import { BigMarquee } from "@/components/BigMarquee";
 import { Footer } from "@/components/Footer";
 import { StickyCta } from "@/components/StickyCta";
+import { Tracker } from "@/components/Tracker";
 
 const Page = () => (
   <main className="flex-1">
@@ -21,6 +22,7 @@ const Page = () => (
     <FinalCta />
     <Footer />
     <StickyCta />
+    <Tracker />
   </main>
 );
 
