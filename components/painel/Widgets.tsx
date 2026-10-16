@@ -73,7 +73,7 @@ export const Timeline = ({ data, labelFormat }: { data: { key: string; views: nu
     <div>
       <div className="flex h-44 items-end gap-1">
         {data.map((d) => (
-          <div key={d.key} className="group relative flex h-full flex-1 items-end justify-center gap-px">
+          <div key={d.key} className="group relative flex h-full max-w-10 flex-1 items-end justify-center gap-px">
             <div className="w-1/2 rounded-t bg-roxo-claro/70" style={{ height: `${(d.views / max) * 100}%` }} />
             <div className="w-1/2 rounded-t bg-verde" style={{ height: `${(d.submits / max) * 100}%` }} />
             <div className="pointer-events-none absolute -top-14 z-10 hidden whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-xs group-hover:block">
@@ -86,7 +86,7 @@ export const Timeline = ({ data, labelFormat }: { data: { key: string; views: nu
       </div>
       <div className="mt-2 flex gap-1 text-[10px] text-white/40">
         {data.map((d, i) => (
-          <span key={d.key} className="flex-1 text-center">
+          <span key={d.key} className="max-w-10 flex-1 text-center">
             {data.length <= 14 || i % 3 === 0 ? labelFormat(d.key) : ""}
           </span>
         ))}

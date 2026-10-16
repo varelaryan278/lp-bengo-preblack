@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { COOKIE, checkCode, sessionToken } from "@/lib/painel-auth";
 
-export const login = async (_prev: { error?: string }, formData: FormData) => {
+export const login = async (_prev: { error?: string }, formData: FormData): Promise<{ error?: string }> => {
   await new Promise((r) => setTimeout(r, 600));
   if (!checkCode(String(formData.get("code") ?? ""))) return { error: "Código inválido." };
 
