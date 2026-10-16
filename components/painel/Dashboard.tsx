@@ -62,6 +62,10 @@ export const Dashboard = ({ data }: { data: Data }) => (
           Tentativas inválidas: <strong className="text-white">{data.invalid}</strong> (nome {data.invalidBy.nome} · telefone {data.invalidBy.telefone} · cidade{" "}
           {data.invalidBy.cidade})
         </div>
+        <div className="mt-2 rounded-lg bg-white/[0.03] p-3 text-xs text-white/60">
+          Cidade auto-detectada em <strong className="text-white">{data.geoDetected}</strong> leads · mantida em{" "}
+          <strong className="text-verde">{data.geoKept}</strong> ({pct(data.geoKept, data.geoDetected)} de acerto)
+        </div>
       </Card>
 
       <Card title="Visitas x leads por dia" className="lg:col-span-2">

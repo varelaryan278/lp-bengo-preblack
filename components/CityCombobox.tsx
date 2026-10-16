@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronDownIcon, Loader2Icon, MapPinIcon } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -29,11 +29,34 @@ const loadCities = () => {
   return cache;
 };
 
+type Geo = { city: string | null; uf: string | null; country: string | null };
+
+const detectCity = async () => {
+  const geo = (await fetch("/api/geo").then((r) => r.json())) as Geo;
+  if (geo.country !== "BR" || !geo.city) return null;
+  const cities = await loadCities();
+  const name = normalize(geo.city);
+  const matches = cities.filter((c) => normalize(c.nome) === name);
+  const match = matches.find((c) => c.uf === geo.uf) ?? (matches.length === 1 ? matches[0] : null);
+  return match ? `${match.nome}/${match.uf}` : null;
+};
+
 export const CityCombobox = ({ name }: { name: string }) => {
   const [open, setOpen] = useState(false);
   const [cities, setCities] = useState<City[] | null>(null);
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState("");
+  const [detected, setDetected] = useState("");
+
+  useEffect(() => {
+    detectCity()
+      .then((city) => {
+        if (!city) return;
+        setDetected(city);
+        setSelected((current) => current || city);
+      })
+      .catch(() => null);
+  }, []);
 
   const results = useMemo(() => {
     if (!cities) return [];
@@ -58,6 +81,7 @@ export const CityCombobox = ({ name }: { name: string }) => {
   return (
     <>
       <input type="hidden" name={name} value={selected} />
+      <input type="hidden" name={`${name}_detectada`} value={detected} />
       <Popover open={open} onOpenChange={handleOpen}>
         <PopoverTrigger
           className={cn(
@@ -105,6 +129,12 @@ export const CityCombobox = ({ name }: { name: string }) => {
           </Command>
         </PopoverContent>
       </Popover>
+      {detected && selected === detected && (
+        <p className="mt-1.5 flex items-center gap-1.5 px-1 text-xs text-white/50 animate-in fade-in-0">
+          <span className="size-1.5 rounded-full bg-verde" />
+          Detectamos sua cidade pela conexão. Não é essa? Toque para alterar.
+        </p>
+      )}
     </>
   );
 };

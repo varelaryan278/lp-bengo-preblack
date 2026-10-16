@@ -23,7 +23,7 @@ const data = {
       description: SITE.description,
       inLanguage: "pt-BR",
       publisher: { "@id": organization["@id"] },
-      primaryImageOfPage: `${SITE_URL}/opengraph-image`,
+      primaryImageOfPage: `${SITE_URL}/opengraph-image.jpg`,
     },
     {
       "@type": "Event",
@@ -34,7 +34,7 @@ const data = {
       eventStatus: "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
       location: { "@type": "VirtualLocation", url: SITE_URL },
-      image: [`${SITE_URL}/opengraph-image`],
+      image: [`${SITE_URL}/opengraph-image.jpg`],
       organizer: { "@id": organization["@id"] },
       offers: {
         "@type": "Offer",

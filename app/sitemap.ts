@@ -6,7 +6,7 @@ const sitemap = (): MetadataRoute.Sitemap => [
     url: SITE_URL,
     changeFrequency: "daily",
     priority: 1,
-    images: [`${SITE_URL}/opengraph-image`],
+    images: [`${SITE_URL}/opengraph-image.jpg`],
   },
 ];
 

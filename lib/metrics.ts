@@ -86,6 +86,8 @@ export const getDashboard = async () => {
     invalid: num(s.invalid),
     invalidBy: { nome: num(s["invalid:nome"]), telefone: num(s["invalid:telefone"]), cidade: num(s["invalid:cidade"]) },
     redisRetry: num(s["redis:retry"]),
+    geoDetected: num(s["geo:detected"]),
+    geoKept: num(s["geo:kept"]),
     webhook,
     webhookOk: webhook.created + webhook.duplicate,
     webhookFail: webhook.inactive + webhook.error + webhook.http_error + webhook.timeout + webhook.network_error,

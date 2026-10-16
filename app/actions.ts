@@ -44,6 +44,7 @@ export const submitLead = async (_prev: LeadState, formData: FormData): Promise<
       campaign: clean(formData.get("utm_campaign")),
       referrer: clean(formData.get("referrer")),
       device: detectDevice(ua),
+      cidadeDetectada: clean(formData.get("cidade_detectada")),
     },
   );
 

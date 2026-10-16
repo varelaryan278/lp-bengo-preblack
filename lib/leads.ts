@@ -9,6 +9,7 @@ export type LeadMeta = {
   campaign: string;
   referrer: string;
   device: string;
+  cidadeDetectada: string;
 };
 
 type WebhookStatus = "created" | "duplicate" | "inactive" | "error" | "http_error" | "timeout" | "network_error";
@@ -53,6 +54,8 @@ const saveLead = (lead: Lead, meta: LeadMeta) => {
     .zincrby(K.cities, 1, lead.cidade)
     .zincrby(K.sources, 1, meta.source || "direto")
     .hincrby(K.devices, meta.device, 1)
+    .hincrby(K.stats, "geo:detected", meta.cidadeDetectada ? 1 : 0)
+    .hincrby(K.stats, "geo:kept", meta.cidadeDetectada && meta.cidadeDetectada === lead.cidade ? 1 : 0)
     .exec();
 };
 
