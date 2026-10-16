@@ -17,7 +17,11 @@ const formatDate = (iso: string) =>
 
 const toCsv = (leads: LeadRow[]) => {
   const cols: (keyof LeadRow)[] = ["createdAt", "nome", "telefone", "cidade", "source", "device", "webhookStatus", "webhookDetail"];
-  const escape = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  const escape = (v: unknown) => {
+    const s = String(v ?? "");
+    const safe = /^[=+\-@\t\r]/.test(s) && !/^\+\d+$/.test(s) ? `'${s}` : s;
+    return `"${safe.replace(/"/g, '""')}"`;
+  };
   return [cols.join(";"), ...leads.map((l) => cols.map((c) => escape(l[c])).join(";"))].join("\n");
 };
 

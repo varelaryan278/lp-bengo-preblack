@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Kanit, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { SITE, SITE_URL } from "@/lib/site";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -12,21 +13,41 @@ const kanit = Kanit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL ?? "http://localhost:3000"),
-  title: "Pré-Black Bengô Açaí · Live exclusiva para futuros franqueados",
-  description:
-    "Entre no grupo VIP da Pré-Black Bengô Açaí e garanta acesso à live exclusiva com a condição de franquia mais agressiva do ano.",
-  openGraph: {
-    title: "Pré-Black Bengô Açaí · Live exclusiva",
-    description: "Condição de franquia nunca liberada. Só para quem estiver no grupo.",
-    images: ["/images/hero-pote.png"],
-    locale: "pt_BR",
-    type: "website",
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE.title, template: `%s · ${SITE.shortTitle}` },
+  description: SITE.description,
+  keywords: SITE.keywords,
+  applicationName: SITE.name,
+  authors: [{ name: "Bengô Açaí", url: "https://bengoacai.com" }],
+  creator: "Bengô Açaí",
+  publisher: "Bengô Açaí",
+  category: "business",
+  alternates: { canonical: "/" },
+  formatDetection: { telephone: false, email: false, address: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "/",
+    siteName: SITE.name,
+    title: "Pré-Black Bengô Açaí · Live exclusiva",
+    description: "A condição de franquia mais agressiva do ano, liberada ao vivo. Acesso só pelo grupo VIP.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pré-Black Bengô Açaí · Live exclusiva",
+    description: "A condição de franquia mais agressiva do ano, liberada ao vivo. Acesso só pelo grupo VIP.",
+  },
+  appleWebApp: { capable: true, title: "Pré-Black Bengô", statusBarStyle: "black-translucent" },
 };
 
 export const viewport: Viewport = {
   themeColor: "#0e0d1c",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

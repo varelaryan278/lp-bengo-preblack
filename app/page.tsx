@@ -9,6 +9,7 @@ import { BigMarquee } from "@/components/BigMarquee";
 import { Footer } from "@/components/Footer";
 import { StickyCta } from "@/components/StickyCta";
 import { Tracker } from "@/components/Tracker";
+import { JsonLd } from "@/components/JsonLd";
 
 const Page = () => (
   <main className="flex-1">
@@ -23,6 +24,7 @@ const Page = () => (
     <Footer />
     <StickyCta />
     <Tracker />
+    <JsonLd />
   </main>
 );
 
