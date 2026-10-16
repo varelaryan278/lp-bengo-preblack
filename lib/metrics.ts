@@ -40,9 +40,9 @@ export const getDashboard = async () => {
     .zrange(K.cities, 0, 29, { rev: true, withScores: true })
     .zrange(K.sources, 0, 14, { rev: true, withScores: true })
     .hgetall<Record<string, unknown>>(K.devices)
-    .hgetall<Record<string, unknown>>(K.daily("view"))
+    .hgetall<Record<string, unknown>>(K.daily("human"))
     .hgetall<Record<string, unknown>>(K.daily("submits"))
-    .hgetall<Record<string, unknown>>(K.hourly("view"))
+    .hgetall<Record<string, unknown>>(K.hourly("human"))
     .hgetall<Record<string, unknown>>(K.hourly("submits"))
     .zrange(K.leads, 0, 199, { rev: true })
     .lrange(K.events, 0, 99)
@@ -79,6 +79,9 @@ export const getDashboard = async () => {
 
   return {
     views: num(s.view),
+    humans: num(s.human),
+    botBlocked: num(s.bot_blocked),
+    botSubmits: num(s.bot_submit),
     visitors: num(visitors),
     formStarts: num(s.form_start),
     submits: num(s.submits),

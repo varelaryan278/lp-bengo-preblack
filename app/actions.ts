@@ -1,9 +1,10 @@
 "use server";
 
 import { isValidPhoneNumber } from "libphonenumber-js";
+import { isbot } from "isbot";
 import { headers } from "next/headers";
 import { WHATSAPP_GROUP_URL } from "@/lib/event";
-import { persistLead, recordInvalid } from "@/lib/leads";
+import { persistLead, recordBotSubmit, recordInvalid } from "@/lib/leads";
 
 export type LeadState = {
   ok: boolean;
@@ -16,6 +17,12 @@ const clean = (value: FormDataEntryValue | null) => String(value ?? "").trim();
 const detectDevice = (ua: string) => (/iPad|Tablet/i.test(ua) ? "tablet" : /Mobi|Android|iPhone/i.test(ua) ? "mobile" : "desktop");
 
 export const submitLead = async (_prev: LeadState, formData: FormData): Promise<LeadState> => {
+  const ua = (await headers()).get("user-agent") ?? "";
+  if (clean(formData.get("bengo_hp")) || isbot(ua)) {
+    await recordBotSubmit();
+    return { ok: true, groupUrl: WHATSAPP_GROUP_URL };
+  }
+
   const nome = clean(formData.get("nome"));
   const telefone = clean(formData.get("telefone"));
   const cidade = clean(formData.get("cidade"));
@@ -32,8 +39,6 @@ export const submitLead = async (_prev: LeadState, formData: FormData): Promise<
     await recordInvalid("cidade");
     return { ok: false, error: "Selecione sua cidade." };
   }
-
-  const ua = (await headers()).get("user-agent") ?? "";
 
   await persistLead(
     { nome, telefone, cidade },

@@ -79,7 +79,7 @@ export const Timeline = ({ data, labelFormat }: { data: { key: string; views: nu
             <div className="pointer-events-none absolute -top-14 z-10 hidden whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-xs group-hover:block">
               {labelFormat(d.key)}
               <br />
-              {d.views} visitas · {d.submits} leads
+              {d.views} visitas humanas · {d.submits} leads
             </div>
           </div>
         ))}
@@ -93,7 +93,7 @@ export const Timeline = ({ data, labelFormat }: { data: { key: string; views: nu
       </div>
       <div className="mt-3 flex gap-4 text-xs text-white/60">
         <span className="flex items-center gap-1.5">
-          <span className="size-2.5 rounded-sm bg-roxo-claro/70" /> Visitas
+          <span className="size-2.5 rounded-sm bg-roxo-claro/70" /> Visitas humanas
         </span>
         <span className="flex items-center gap-1.5">
           <span className="size-2.5 rounded-sm bg-verde" /> Leads

@@ -12,7 +12,7 @@ export const getVisitorId = () => {
   }
 };
 
-export const track = (type: "view" | "form_start" | "redirect") => {
+export const track = (type: "view" | "human" | "form_start" | "redirect") => {
   const payload = JSON.stringify({ type, vid: getVisitorId() });
   if (navigator.sendBeacon) navigator.sendBeacon("/api/track", new Blob([payload], { type: "application/json" }));
   else fetch("/api/track", { method: "POST", body: payload, keepalive: true });

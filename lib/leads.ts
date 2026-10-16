@@ -82,3 +82,5 @@ export const persistLead = async (lead: Lead, meta: LeadMeta) => {
 
 export const recordInvalid = (reason: string) =>
   withTimeout(redis.pipeline().hincrby(K.stats, "invalid", 1).hincrby(K.stats, `invalid:${reason}`, 1).exec()).catch(() => null);
+
+export const recordBotSubmit = () => withTimeout(redis.hincrby(K.stats, "bot_submit", 1)).catch(() => null);

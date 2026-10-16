@@ -62,7 +62,9 @@ export const LeadForm = ({ id }: { id?: string }) => {
           O link da live sai só lá dentro.
         </p>
 
-        <div className="mt-6 space-y-3">
+        <input type="text" name="bengo_hp" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] h-px w-px opacity-0" />
+
+      <div className="mt-6 space-y-3">
           <label className="block">
             <span className="sr-only">Nome</span>
             <input

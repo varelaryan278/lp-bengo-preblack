@@ -40,10 +40,10 @@ export const Dashboard = ({ data }: { data: Data }) => (
     </header>
 
     <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
-      <Kpi label="Visitas" value={data.views} hint="Pageviews totais" />
+      <Kpi label="Visitas humanas" value={data.humans} hint={`${data.views} brutas · ${data.botBlocked} robôs barrados`} />
       <Kpi label="Visitantes únicos" value={data.visitors} hint="Aproximado (HyperLogLog)" accent="roxo" />
-      <Kpi label="Iniciaram o form" value={data.formStarts} hint={`${pct(data.formStarts, data.views)} das visitas`} />
-      <Kpi label="Leads enviados" value={data.submits} hint={`Conversão ${pct(data.submits, data.views)}`} accent="verde" />
+      <Kpi label="Iniciaram o form" value={data.formStarts} hint={`${pct(data.formStarts, data.humans)} das visitas humanas`} />
+      <Kpi label="Leads enviados" value={data.submits} hint={`Conversão ${pct(data.submits, data.humans)}`} accent="verde" />
       <Kpi label="CRM sucesso" value={data.webhookOk} hint={`${pct(data.webhookOk, data.submits)} dos leads`} accent="verde" />
       <Kpi label="CRM erro" value={data.webhookFail} hint={`${pct(data.webhookFail, data.submits)} dos leads`} accent={data.webhookFail ? "red" : undefined} />
     </div>
@@ -52,7 +52,7 @@ export const Dashboard = ({ data }: { data: Data }) => (
       <Card title="Funil" className="lg:col-span-1">
         <Funnel
           steps={[
-            { label: "Visitas", value: data.views },
+            { label: "Visitas humanas", value: data.humans },
             { label: "Iniciaram o formulário", value: data.formStarts },
             { label: "Enviaram (válidos)", value: data.submits },
             { label: "Redirecionados ao grupo", value: data.redirects },
@@ -60,7 +60,7 @@ export const Dashboard = ({ data }: { data: Data }) => (
         />
         <div className="mt-5 rounded-lg bg-white/[0.03] p-3 text-xs text-white/60">
           Tentativas inválidas: <strong className="text-white">{data.invalid}</strong> (nome {data.invalidBy.nome} · telefone {data.invalidBy.telefone} · cidade{" "}
-          {data.invalidBy.cidade})
+          {data.invalidBy.cidade}) · Envios de robô barrados: <strong className="text-white">{data.botSubmits}</strong>
         </div>
         <div className="mt-2 rounded-lg bg-white/[0.03] p-3 text-xs text-white/60">
           Cidade auto-detectada em <strong className="text-white">{data.geoDetected}</strong> leads · mantida em{" "}
