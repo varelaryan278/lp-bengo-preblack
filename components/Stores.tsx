@@ -19,7 +19,7 @@ export const Stores = () => (
           </h2>
         </div>
         <p className="max-w-sm text-white/60">
-          Projeto arquitetônico, mobiliário, enxoval e marketing de inauguração já inclusos no investimento.
+          No modelo loja, o investimento inclui projeto arquitetônico, mobiliário, enxoval e marketing de inauguração, conforme a COF.
         </p>
       </div>
 
@@ -29,10 +29,27 @@ export const Stores = () => (
             <div className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10">
               <Image src={p.src} alt={p.alt} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover transition duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-roxo/60 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+              <span className="absolute bottom-2 left-2 rounded-md bg-noite/80 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-white/70 backdrop-blur">
+                Projeto ilustrativo
+              </span>
             </div>
           </Reveal>
         ))}
       </div>
+
+      <Reveal className="mt-4">
+        <div className="flex flex-col gap-3 rounded-2xl border border-dashed border-verde/40 bg-verde/5 p-5 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="font-display text-xl font-bold uppercase">
+              Novo formato <span className="text-verde">quiosque</span>
+            </p>
+            <p className="mt-1 text-sm text-white/60">A partir de 12 m², implantação em até 30 dias e operação com dois funcionários.</p>
+          </div>
+          <a href="#inscricao" className="shrink-0 rounded-xl bg-verde px-5 py-3 font-display text-sm font-bold uppercase text-noite transition hover:bg-verde-claro">
+            Saber mais na live
+          </a>
+        </div>
+      </Reveal>
     </div>
   </section>
 );

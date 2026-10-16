@@ -5,8 +5,8 @@ import { Reveal } from "./Reveal";
 const stats = [
   { to: 140, prefix: "+", suffix: "", label: "lojas vendidas" },
   { to: 10, prefix: "", suffix: "", label: "estados com presença" },
-  { to: 80, prefix: "R$ ", suffix: " mil", label: "faturamento médio mensal por loja*" },
-  { to: 25, prefix: "até ", suffix: "%", label: "de margem de lucro*" },
+  { to: 80, prefix: "R$ ", suffix: " mil", label: "faturamento médio mensal por loja¹" },
+  { to: 25, prefix: "15% a ", suffix: "%", label: "de margem de lucro estimada¹" },
 ];
 
 export const Numbers = () => (
@@ -36,7 +36,24 @@ export const Numbers = () => (
               </div>
             </Reveal>
           ))}
+          <Reveal delay={480} className="col-span-2">
+            <div className="flex flex-col gap-2 rounded-2xl border border-verde/40 bg-gradient-to-r from-verde/15 to-roxo/20 p-5 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-widest text-verde">Investimento inicial</p>
+                <p className="font-display text-3xl font-black sm:text-4xl">
+                  a partir de <span className="text-verde">R$ 100 mil²</span>
+                </p>
+              </div>
+              <p className="max-w-56 text-sm text-white/60">Formato quiosque. Valor de entrada, não o custo total da operação.</p>
+            </div>
+          </Reveal>
         </div>
+
+        <p className="mt-4 text-xs leading-relaxed text-white/40">
+          ¹ Média e faixa informadas pela Bengô Açaí (franqueadora) para lojas em operação. Estimativas, não constituem promessa de resultado.
+          <br />² Formato quiosque, segundo a Mercado&amp;Consumo (25/08/2026). Ponto comercial, obras, taxas e capital de giro podem não estar
+          incluídos; consulte a COF.
+        </p>
       </div>
 
       <Reveal delay={200} className="relative mx-auto w-full max-w-lg">
