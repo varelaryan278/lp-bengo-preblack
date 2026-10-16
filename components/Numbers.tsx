@@ -40,8 +40,8 @@ export const Numbers = () => (
             <div className="flex flex-col gap-2 rounded-2xl border border-verde/40 bg-gradient-to-r from-verde/15 to-roxo/20 p-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-widest text-verde">Investimento inicial</p>
-                <p className="font-display text-3xl font-black sm:text-4xl">
-                  a partir de <span className="text-verde">R$ 100 mil²</span>
+                <p className="font-display text-2xl font-black sm:text-3xl">
+                  a partir de <span className="whitespace-nowrap text-verde">R$ 100 mil²</span>
                 </p>
               </div>
               <p className="max-w-56 text-sm text-white/60">Formato quiosque. Valor de entrada, não o custo total da operação.</p>
@@ -58,7 +58,7 @@ export const Numbers = () => (
 
       <Reveal delay={200} className="relative mx-auto w-full max-w-lg">
         <Image
-          src="/images/mapa-brasil-964.png"
+          src="/images/mapa-brasil-pr.png"
           alt="Mapa do Brasil com a presença da Bengô Açaí"
           width={964}
           height={1024}

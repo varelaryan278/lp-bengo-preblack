@@ -38,14 +38,20 @@ export const Stores = () => (
       </div>
 
       <Reveal className="mt-4">
-        <div className="flex flex-col gap-3 rounded-2xl border border-dashed border-verde/40 bg-verde/5 p-5 sm:flex-row sm:items-center sm:justify-between">
-          <div>
+        <div className="flex flex-col gap-4 overflow-hidden rounded-2xl border border-verde/40 bg-verde/5 sm:flex-row sm:items-center">
+          <div className="relative aspect-[4/3] w-full shrink-0 sm:w-72">
+            <Image src="/images/press/mercadoeconsumo.webp" alt="Quiosque Bengô Açaí em operação" fill sizes="(min-width: 640px) 288px, 100vw" className="object-cover" />
+            <span className="absolute bottom-2 left-2 rounded-md bg-noite/80 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-white/70 backdrop-blur">
+              Foto real · Divulgação
+            </span>
+          </div>
+          <div className="flex-1 px-5 sm:px-0">
             <p className="font-display text-xl font-bold uppercase">
               Novo formato <span className="text-verde">quiosque</span>
             </p>
             <p className="mt-1 text-sm text-white/60">A partir de 12 m², implantação em até 30 dias e operação com dois funcionários.</p>
           </div>
-          <a href="#inscricao" className="shrink-0 rounded-xl bg-verde px-5 py-3 font-display text-sm font-bold uppercase text-noite transition hover:bg-verde-claro">
+          <a href="#inscricao" className="mx-5 mb-5 shrink-0 rounded-xl bg-verde px-5 py-3 text-center font-display text-sm font-bold uppercase text-noite transition hover:bg-verde-claro sm:mb-0">
             Saber mais na live
           </a>
         </div>
