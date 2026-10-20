@@ -18,6 +18,13 @@ export const track = (type: "view" | "human" | "form_start" | "redirect") => {
   else fetch("/api/track", { method: "POST", body: payload, keepalive: true });
 };
 
+export const trackMetaLead = (eventId: string) => {
+  const { fbq } = window as Window & {
+    fbq?: (command: "track", event: "Lead", data: Record<string, never>, options: { eventID: string }) => void;
+  };
+  fbq?.("track", "Lead", {}, { eventID: eventId });
+};
+
 export const appendTrackingContext = (formData: FormData) => {
   const params = new URLSearchParams(window.location.search);
   formData.set("vid", getVisitorId());

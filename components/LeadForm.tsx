@@ -7,7 +7,7 @@ import { submitLead, type LeadState } from "@/app/actions";
 import { PhoneInput } from "./phone-input";
 import { CityCombobox } from "./CityCombobox";
 import { RedirectOverlay } from "./RedirectOverlay";
-import { appendTrackingContext, track } from "@/lib/tracking";
+import { appendTrackingContext, track, trackMetaLead } from "@/lib/tracking";
 
 const inputClass =
   "w-full rounded-xl border border-white/10 bg-white/5 h-[52px] px-4 text-base text-white placeholder:text-white/40 outline-none transition focus:border-verde focus:bg-white/10 focus:ring-2 focus:ring-verde/30";
@@ -19,11 +19,21 @@ export const LeadForm = ({ id }: { id?: string }) => {
   const [phone, setPhone] = useState<Value>("" as Value);
 
   const started = useRef(false);
+  const trackedLead = useRef<string | undefined>(undefined);
 
   useEffect(() => {
     if (!state.ok || !state.groupUrl) return;
-    track("redirect");
-    window.location.href = state.groupUrl;
+    if (state.leadEventId && trackedLead.current !== state.leadEventId) {
+      trackedLead.current = state.leadEventId;
+      trackMetaLead(state.leadEventId);
+    }
+
+    // Give the Pixel a moment to send the event before leaving the page.
+    const redirect = window.setTimeout(() => {
+      track("redirect");
+      window.location.href = state.groupUrl!;
+    }, 300);
+    return () => window.clearTimeout(redirect);
   }, [state]);
 
   const submit = (formData: FormData) => {

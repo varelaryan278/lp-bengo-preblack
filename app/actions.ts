@@ -10,6 +10,7 @@ export type LeadState = {
   ok: boolean;
   error?: string;
   groupUrl?: string;
+  leadEventId?: string;
 };
 
 const clean = (value: FormDataEntryValue | null) => String(value ?? "").trim();
@@ -53,5 +54,5 @@ export const submitLead = async (_prev: LeadState, formData: FormData): Promise<
     },
   );
 
-  return { ok: true, groupUrl: WHATSAPP_GROUP_URL };
+  return { ok: true, groupUrl: WHATSAPP_GROUP_URL, leadEventId: crypto.randomUUID() };
 };
