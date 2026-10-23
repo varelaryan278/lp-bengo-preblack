@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Reveal } from "./Reveal";
+import { GroupLink } from "./GroupLink";
 import { LIVE_LABEL } from "@/lib/event";
 
 export const FinalCta = () => (
@@ -21,12 +22,11 @@ export const FinalCta = () => (
       <p className="mx-auto mt-6 max-w-xl text-lg text-white/75">
         Live exclusiva em {LIVE_LABEL}. Entre agora para não perder o link e a condição liberada só durante a transmissão.
       </p>
-      <a
-        href="#inscricao"
+      <GroupLink
         className="btn-shine animate-pulse-ring mt-10 inline-flex items-center justify-center rounded-xl bg-verde px-10 py-5 font-display text-lg font-bold uppercase tracking-wide text-noite transition hover:bg-verde-claro"
       >
         Quero minha vaga no grupo
-      </a>
+      </GroupLink>
     </Reveal>
   </section>
 );

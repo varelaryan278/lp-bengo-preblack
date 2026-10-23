@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Reveal } from "./Reveal";
+import { GroupLink } from "./GroupLink";
 
 const photos = [
   { src: "/images/loja-fachada-768.webp", alt: "Fachada de loja Bengô Açaí" },
@@ -51,9 +52,9 @@ export const Stores = () => (
             </p>
             <p className="mt-1 text-sm text-white/60">A partir de 12 m², implantação em até 30 dias e operação com dois funcionários.</p>
           </div>
-          <a href="#inscricao" className="mx-5 mb-5 shrink-0 rounded-xl bg-verde px-5 py-3 text-center font-display text-sm font-bold uppercase text-noite transition hover:bg-verde-claro sm:mb-0">
+          <GroupLink className="mx-5 mb-5 shrink-0 rounded-xl bg-verde px-5 py-3 text-center font-display text-sm font-bold uppercase text-noite transition hover:bg-verde-claro sm:mb-0">
             Saber mais na live
-          </a>
+          </GroupLink>
         </div>
       </Reveal>
     </div>

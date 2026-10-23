@@ -24,12 +24,3 @@ export const trackMetaLead = (eventId: string) => {
   };
   fbq?.("track", "Lead", {}, { eventID: eventId });
 };
-
-export const appendTrackingContext = (formData: FormData) => {
-  const params = new URLSearchParams(window.location.search);
-  formData.set("vid", getVisitorId());
-  formData.set("utm_source", params.get("utm_source") ?? "");
-  formData.set("utm_medium", params.get("utm_medium") ?? "");
-  formData.set("utm_campaign", params.get("utm_campaign") ?? "");
-  formData.set("referrer", document.referrer);
-};

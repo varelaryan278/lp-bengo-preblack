@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Countdown } from "./Countdown";
-import { LeadForm } from "./LeadForm";
+import { GroupCard } from "./GroupCard";
 import { LIVE_LABEL } from "@/lib/event";
 
 const delay = (ms: number) => ({ animationDelay: `${ms}ms` });
@@ -67,7 +67,7 @@ export const Hero = () => (
       </div>
 
       <div className="animate-rise" style={delay(700)}>
-        <LeadForm id="inscricao" />
+        <GroupCard id="inscricao" />
       </div>
     </div>
   </section>
